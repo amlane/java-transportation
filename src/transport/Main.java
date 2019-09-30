@@ -3,6 +3,15 @@ package transport;
 import java.util.*;
 
 public class Main {
+
+    public static void printVehicles(ArrayList<AbstractVehicle> vehicles, CheckVehicle tester) {
+        for (AbstractVehicle v : vehicles) {
+            if (tester.test(v)) {
+                System.out.println(v.getName() + " " + v.getFuelLevel());
+            }
+        }
+    }
+
     public static void main(String[] args) {
         Horse seabiscuit = new Horse("SeaBiscuit");
         Horse affirmed = new Horse("Affirmed");
@@ -54,5 +63,25 @@ public class Main {
         System.out.println("*** The List ***");
         System.out.println(myList.toString());
         System.out.println();
+
+        System.out.println("*** Lambda Expressions ***");
+        // filtering
+        printVehicles(myList, v -> v.getFuelLevel() < 0);
+        System.out.println();
+        printVehicles(myList, v -> v.getFuelLevel() > 0);
+        System.out.println();
+        printVehicles(myList, v -> (v.getFuelLevel() > 0) && (v instanceof HorseFromVehicle));
+
+        System.out.println();
+        myList.forEach((el) -> System.out.println(el));
+        System.out.println();
+        System.out.println("*** Sorted by Name ***");
+        myList.sort((a, b) -> a.getName().compareToIgnoreCase(b.getName()));
+        printVehicles(myList, v -> (v.getFuelLevel() >= 0) && (v instanceof Auto));
+        System.out.println("*** Or ***");
+        myList.forEach((el) -> {
+            if (el instanceof Auto && el.getFuelLevel() >= 0)
+                System.out.println(el);
+        });
     }
 }

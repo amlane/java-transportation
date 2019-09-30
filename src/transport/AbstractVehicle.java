@@ -7,6 +7,7 @@ public abstract class AbstractVehicle {
         this.fuel = fuel;
     }
 
+    // default constructor
     public AbstractVehicle() {
         fuel = 1;
     }
