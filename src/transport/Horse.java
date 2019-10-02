@@ -3,20 +3,15 @@ package transport;
 public class Horse implements Vehicle, Animal {
 
     // fields
-
     private int fuel = 0;
     private String name;
-
-    // default constructor
-    public Horse() {
-
-    }
 
     // constructor
     public Horse(String name) {
         this.name = name;
     }
 
+    // getters and setters
     public String getName() {
         return name;
     }
